@@ -1,6 +1,7 @@
 package AESDAO;
 
 import AESConnection.DBConnection;
+import AESDAOInterfaces.IPatientDAO;
 import AESData.PatientData;
 import java.awt.HeadlessException;
 import java.sql.Connection;
@@ -11,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
-public class PatientDAO {
+public class PatientDAO implements IPatientDAO {
     
     private final DBConnection mysql = new DBConnection();
     private final Connection conn = mysql.ConnecrDb();
@@ -19,30 +20,34 @@ public class PatientDAO {
     private PreparedStatement pst = null;
     private final String temp = "";
     
-    public DefaultTableModel cargar(String valor) {
+    @Override
+    public DefaultTableModel dataLoad(String value) {
 
         ResultSet rs;
         DefaultTableModel model;
 
         try {
-            String[] titulos = {"Cedula", "Nombre", "Telefono", "Direccion", "Profesion", "Borrado en"};
-            String[] registros = new String[6];
-            sSQL = "SELECT * FROM professor where (professor_id) LIKE '%" + valor + "%' or (professor_name) LIKE '%" + valor + "%'"
-                    + " or(professor_career_name) LIKE '%" + valor + "%'";
+            String[] headers = {"ID", "Número Historia","Nombre", "Teléfono", "Dirección", "Número Diagnóstico", "Borrado el", "Actualizado el"};
+            String[] registers = new String[8];
+            sSQL = "SELECT * FROM Patient where (patient_id) LIKE '%" + value + "%' OR (patient_name) LIKE '%" + value + "%'"
+                    + " OR (patient_historialnumber) ";
 
-            model = new DefaultTableModel(null, titulos);
+            model = new DefaultTableModel(null, headers);
             pst = conn.prepareStatement(sSQL);
             rs = pst.executeQuery();
 
             while (rs.next()) {
 
-                registros[0] = rs.getString("professor_id");
-                registros[1] = rs.getString("professor_name");
-                registros[2] = rs.getString("professor_phonenumber");
-                registros[3] = rs.getString("professor_address");
-                registros[4] = rs.getString("professor_career_name");
-                registros[5] = rs.getString("deleted_at");
-                model.addRow(registros);
+                registers[0] = rs.getString("patient_id");
+                registers[1] = rs.getString("patient_name");
+                registers[2] = rs.getString("patient_historialnumber");
+                registers[3] = rs.getString("patient_address");
+                registers[4] = rs.getString("patient_phonenumber");
+                registers[5] = rs.getString("deleted_at");
+                registers[6] = rs.getString("updated_at");
+                registers[7] = rs.getString("diagnosis_id");
+                
+                model.addRow(registers);
             }
 
             return model;
@@ -55,6 +60,7 @@ public class PatientDAO {
 
     }
     
+    @Override
     public boolean add(PatientData patientData) {
 
         try {
@@ -76,5 +82,38 @@ public class PatientDAO {
             return false;
         }
 
+    }
+
+    @Override
+    public boolean update(PatientData patientData) {
+            
+        try {
+
+            int patientId = patientData.getPatientId();
+            String patientName = patientData.getPatientName();
+            String patientAddress = patientData.getPatientAddress();
+            String patientPhoneNumber = patientData.getPatientPhoneNumber();
+
+            String sSQL = "UPDATE Patient SET patient_name='" + patientName + "', patient_address='" + patientAddress + "',"
+                + " patient_phonenumber='" + patientPhoneNumber + "', patient_id='" + patientId + "', "
+                + "WHERE career_id='" + patientId + "' ";
+            PreparedStatement pst = conn.prepareStatement(sSQL);
+            pst.execute();
+
+            JOptionPane.showMessageDialog(null, "Registro actualizado");
+
+            return true;
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex);
+
+            return false;
+
+        }
+    }
+
+    @Override
+    public boolean delete(PatientData patientData) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
