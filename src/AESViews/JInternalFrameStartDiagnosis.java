@@ -26,9 +26,10 @@ public class JInternalFrameStartDiagnosis extends javax.swing.JInternalFrame {
         javax.swing.JScrollPane scrb;
         initComponents();
         buttonGroup();
+        buttonDefaultSelection();
     }
     
-    public void buttonGroup() {
+    private void buttonGroup() {
     
     //Those are the button groups for the ES inference
         buttonGroupFirstQuestion.add(jRadioButtonQ1_1);
@@ -151,8 +152,28 @@ public class JInternalFrameStartDiagnosis extends javax.swing.JInternalFrame {
         buttonGroupFifteenthQuestion.add(jRadioButtonQ15_3_5);
         buttonGroupFifteenthQuestion.add(jRadioButtonQ15_4);
     }
+    
+    private void buttonDefaultSelection() {
+        
+        jRadioButtonQ1_1.setSelected(true);
+        jRadioButtonQ2_1.setSelected(true);
+        jRadioButtonQ3_1.setSelected(true);
+        jRadioButtonQ4_1.setSelected(true);
+        jRadioButtonQ5_1.setSelected(true);
+        jRadioButtonQ6_1.setSelected(true);
+        jRadioButtonQ7_1.setSelected(true);
+        jRadioButtonQ8_1.setSelected(true);
+        jRadioButtonQ9_1.setSelected(true);
+        jRadioButtonQ10_1.setSelected(true);
+        jRadioButtonQ11_1.setSelected(true);
+        jRadioButtonQ12_1.setSelected(true);
+        jRadioButtonQ13_1.setSelected(true);
+        jRadioButtonQ14_1.setSelected(true);
+        jRadioButtonQ15_1.setSelected(true);   
+        
+    }
 
-    public void inference() {
+    private void inference() {
         
         //First question
         if (jRadioButtonQ1_1.isSelected()) {
