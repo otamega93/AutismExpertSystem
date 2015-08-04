@@ -6,6 +6,7 @@
 package AESViews;
 
 import AESDAO.PatientDAO;
+import AESData.PatientData;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,6 +19,8 @@ public class JInternalFrameViewPatient extends javax.swing.JInternalFrame {
     /**
      * Creates new form JInternalFrameViewPatient
      */
+    private String deleted = "";
+    
     public JInternalFrameViewPatient() {
         initComponents();
         dataLoad("");
@@ -66,6 +69,8 @@ public class JInternalFrameViewPatient extends javax.swing.JInternalFrame {
         jLabelPatientPhoneNumber = new javax.swing.JLabel();
         jTextFieldPatientPhoneNumber = new javax.swing.JTextField();
         jButtonReportView = new javax.swing.JButton();
+        jLabelPatientHistorialNumber = new javax.swing.JLabel();
+        jTextFieldPatientHistorialNumber = new javax.swing.JTextField();
 
         setTitle("Consulta de pacientes registrados");
 
@@ -77,8 +82,18 @@ public class JInternalFrameViewPatient extends javax.swing.JInternalFrame {
         jButtonSearch.setText("Buscar");
 
         jButtonEdit.setText("Editar");
+        jButtonEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditActionPerformed(evt);
+            }
+        });
 
         jButtonDelete.setText("Eliminar");
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
 
         jButtonRefresh.setText("Refrescar");
 
@@ -123,6 +138,11 @@ public class JInternalFrameViewPatient extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTablePatient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTablePatientMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTablePatient);
 
         jPanelData.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
@@ -137,32 +157,39 @@ public class JInternalFrameViewPatient extends javax.swing.JInternalFrame {
 
         jButtonReportView.setText("Ver reporte");
 
+        jLabelPatientHistorialNumber.setText("Nro historia");
+
         javax.swing.GroupLayout jPanelDataLayout = new javax.swing.GroupLayout(jPanelData);
         jPanelData.setLayout(jPanelDataLayout);
         jPanelDataLayout.setHorizontalGroup(
             jPanelDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDataLayout.createSequentialGroup()
-                .addGroup(jPanelDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addContainerGap()
+                .addGroup(jPanelDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelDataLayout.createSequentialGroup()
                         .addComponent(jLabelPatientId)
                         .addGap(3, 3, 3)
-                        .addComponent(jTextFieldPatientId, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldPatientId, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelDataLayout.createSequentialGroup()
+                        .addComponent(jLabelPatientHistorialNumber)
+                        .addGap(3, 3, 3)
+                        .addComponent(jTextFieldPatientHistorialNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanelDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelDataLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabelPatientName)
                         .addGap(3, 3, 3)
-                        .addComponent(jTextFieldPatientName))
-                    .addGroup(jPanelDataLayout.createSequentialGroup()
-                        .addComponent(jLabelAddress)
-                        .addGap(4, 4, 4)
-                        .addComponent(jTextFieldPatientAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelDataLayout.createSequentialGroup()
+                        .addComponent(jTextFieldPatientName, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabelPatientPhoneNumber)
                         .addGap(3, 3, 3)
                         .addComponent(jTextFieldPatientPhoneNumber))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDataLayout.createSequentialGroup()
-                        .addGap(0, 186, Short.MAX_VALUE)
+                    .addGroup(jPanelDataLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelAddress)
+                        .addGap(4, 4, 4)
+                        .addComponent(jTextFieldPatientAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonReportView)))
                 .addContainerGap())
         );
@@ -185,7 +212,10 @@ public class JInternalFrameViewPatient extends javax.swing.JInternalFrame {
                     .addComponent(jLabelAddress)
                     .addGroup(jPanelDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextFieldPatientAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonReportView)))
+                        .addComponent(jButtonReportView))
+                    .addGroup(jPanelDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelPatientHistorialNumber)
+                        .addComponent(jTextFieldPatientHistorialNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -232,6 +262,59 @@ public class JInternalFrameViewPatient extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTablePatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePatientMouseClicked
+        int row = jTablePatient.rowAtPoint(evt.getPoint());
+        jTextFieldPatientId.setText(jTablePatient.getValueAt(row, 0).toString());
+        jTextFieldPatientHistorialNumber.setText(jTablePatient.getValueAt(row, 1).toString());
+        jTextFieldPatientName.setText(jTablePatient.getValueAt(row, 2).toString());
+        jTextFieldPatientPhoneNumber.setText(jTablePatient.getValueAt(row, 3).toString());
+        jTextFieldPatientAddress.setText(jTablePatient.getValueAt(row, 4).toString());
+        deleted = (jTablePatient.getValueAt(row, 6).toString());
+        System.out.print(deleted);
+    }//GEN-LAST:event_jTablePatientMouseClicked
+
+    private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
+        PatientData patientData = new PatientData();
+        PatientDAO patientDAO = new PatientDAO();
+        
+        patientData.setPatientId(Integer.parseInt(jTextFieldPatientId.getText()));
+        patientData.setPatientName(jTextFieldPatientName.getText());
+        patientData.setPatientAddress(jTextFieldPatientAddress.getText());
+        patientData.setPatientPhoneNumber(jTextFieldPatientPhoneNumber.getText());
+        patientData.setHistorialNumber(Integer.parseInt(jTextFieldPatientHistorialNumber.getText()));
+        
+        patientDAO.update(patientData);
+    }//GEN-LAST:event_jButtonEditActionPerformed
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        
+        PatientData patientData = new PatientData();
+        PatientDAO patientDAO = new PatientDAO();
+        
+        int j = JOptionPane.showConfirmDialog(rootPane, "¿Está seguro que desea eliminar lo que ha seleccionado en la tabla?", "¡Alerta!", JOptionPane.OK_CANCEL_OPTION);
+        if ((j) == JOptionPane.OK_OPTION) {
+
+            if ((deleted.length()) >= 2) {
+
+                JOptionPane.showMessageDialog(rootPane, "Ya este paciente fue eliminado anteriormente");
+                return;
+
+            }
+
+            patientData.setPatientId(Integer.parseInt(jTextFieldPatientId.getText()));
+            patientDAO.delete(patientData);
+
+            JOptionPane.showMessageDialog(rootPane, "Paciente eliminado de la lista exitosamente");
+            jTextFieldSearch.setText("");
+            dataLoad(jTextFieldSearch.getText());
+
+        }
+
+        if ((j) == JOptionPane.CANCEL_OPTION) {
+            JOptionPane.showMessageDialog(rootPane, "No se ha eliminado nada");
+        }
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDelete;
@@ -240,6 +323,7 @@ public class JInternalFrameViewPatient extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonReportView;
     private javax.swing.JButton jButtonSearch;
     private javax.swing.JLabel jLabelAddress;
+    private javax.swing.JLabel jLabelPatientHistorialNumber;
     private javax.swing.JLabel jLabelPatientId;
     private javax.swing.JLabel jLabelPatientName;
     private javax.swing.JLabel jLabelPatientPhoneNumber;
@@ -250,6 +334,7 @@ public class JInternalFrameViewPatient extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablePatient;
     private javax.swing.JTextField jTextFieldPatientAddress;
+    private javax.swing.JTextField jTextFieldPatientHistorialNumber;
     private javax.swing.JTextField jTextFieldPatientId;
     private javax.swing.JTextField jTextFieldPatientName;
     private javax.swing.JTextField jTextFieldPatientPhoneNumber;

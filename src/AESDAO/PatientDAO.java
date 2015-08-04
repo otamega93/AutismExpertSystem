@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -39,13 +41,13 @@ public class PatientDAO implements IPatientDAO {
             while (rs.next()) {
 
                 registers[0] = rs.getString("patient_id");
-                registers[1] = rs.getString("patient_name");
-                registers[2] = rs.getString("patient_historialnumber");
-                registers[3] = rs.getString("patient_address");
-                registers[4] = rs.getString("patient_phonenumber");
-                registers[5] = rs.getString("deleted_at");
-                registers[6] = rs.getString("updated_at");
-                registers[7] = rs.getString("diagnosis_id");
+                registers[1] = rs.getString("patient_historialnumber");
+                registers[2] = rs.getString("patient_name");
+                registers[3] = rs.getString("patient_phonenumber");
+                registers[4] = rs.getString("patient_address");
+                registers[5] = rs.getString("diagnosis_id");
+                registers[6] = rs.getString("deleted_at");
+                registers[7] = rs.getString("updated_at");
                 
                 model.addRow(registers);
             }
@@ -65,13 +67,15 @@ public class PatientDAO implements IPatientDAO {
 
         try {
 
-            sSQL = "INSERT INTO Patient(patient_name,patient_address,patient_phonenumber,patient_id) values (?,?,?,?)";
+            sSQL = "INSERT INTO Patient(patient_name,patient_address,patient_phonenumber,patient_id,patient_historialnumber,deleted_at) values (?,?,?,?,?,?)";
             pst = conn.prepareStatement(sSQL);
 
-            pst.setObject(1, patientData.getPatientName());
+            pst.setString(1, patientData.getPatientName());
             pst.setString(2, patientData.getPatientAddress());
             pst.setString(3, patientData.getPatientPhoneNumber());
             pst.setInt(4, patientData.getPatientId());
+            pst.setInt(5, patientData.getHistorialNumber());
+            pst.setString(6, patientData.getDeletedAt());
            
             pst.execute();
             return true;
@@ -90,13 +94,14 @@ public class PatientDAO implements IPatientDAO {
         try {
 
             int patientId = patientData.getPatientId();
+            int patientHistorialNumber = patientData.getHistorialNumber();
             String patientName = patientData.getPatientName();
             String patientAddress = patientData.getPatientAddress();
             String patientPhoneNumber = patientData.getPatientPhoneNumber();
-
+                        
             String sSQL = "UPDATE Patient SET patient_name='" + patientName + "', patient_address='" + patientAddress + "',"
-                + " patient_phonenumber='" + patientPhoneNumber + "', patient_id='" + patientId + "', "
-                + "WHERE career_id='" + patientId + "' ";
+                + " patient_phonenumber='" + patientPhoneNumber + "', patient_historialnumber='" + patientHistorialNumber + "',"
+                + "WHERE patient_id='" + patientId + "' ";
             PreparedStatement pst = conn.prepareStatement(sSQL);
             pst.execute();
 
@@ -114,6 +119,23 @@ public class PatientDAO implements IPatientDAO {
 
     @Override
     public boolean delete(PatientData patientData) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        Date date = new Date();
+        Timestamp timestamp = new Timestamp(date.getTime());
+        int value = patientData.getPatientId();
+
+        sSQL = "UPDATE Patient SET deleted_at='" + timestamp + "' WHERE patient_id='" + value + "' ";
+        
+        try {
+                pst = conn.prepareStatement(sSQL);
+                pst.execute();
+
+                return true;
+        }
+         catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex);
+
+            return false;
+        }
     }
 }

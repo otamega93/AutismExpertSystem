@@ -121,6 +121,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         menuBar.add(editMenu);
 
         jMenu1.setText("Salir");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
         menuBar.add(jMenu1);
 
         setJMenuBar(menuBar);
@@ -212,6 +217,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
         FrameViewUser.setClosable(true);
         FrameViewUser.toFront();
     }//GEN-LAST:event_jMenuItemViewUsersActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+    System.exit(0);
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
     /**
      * @param args the command line arguments

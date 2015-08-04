@@ -1,18 +1,17 @@
 package AESData;
 
-import java.util.Date;
-
 public class PatientData {
     
     private String patientName;
     private String patientAddress;
     private String patientPhoneNumber;
+    private String updateAt;
+    private String deletedAt;
     private int patientId;
-    private int diagnosisId;
-    private Date updateAt;
-    private Date deletedAt;
+    private int historialNumber;
+    private int diagnosisId;    
 
-    public PatientData(String patientName, String patientAddress, String patientPhoneNumber, int patientId, int diagnosisId, Date updateAt, Date deletedAt) {
+    public PatientData(String patientName, String patientAddress, String patientPhoneNumber, int patientId, int historialNumber,int diagnosisId, String updateAt, String deletedAt) {
         this.patientName = patientName;
         this.patientAddress = patientAddress;
         this.patientPhoneNumber = patientPhoneNumber;
@@ -20,9 +19,18 @@ public class PatientData {
         this.diagnosisId = diagnosisId;
         this.updateAt = updateAt;
         this.deletedAt = deletedAt;
+        this.historialNumber = historialNumber;
     }
 
     public PatientData() {
+    }
+
+    public int getHistorialNumber() {
+        return historialNumber;
+    }
+
+    public void setHistorialNumber(int historialNumber) {
+        this.historialNumber = historialNumber;
     }
 
     public String getPatientName() {
@@ -65,19 +73,19 @@ public class PatientData {
         this.diagnosisId = diagnosisId;
     }
 
-    public Date getUpdateAt() {
+    public String getUpdateAt() {
         return updateAt;
     }
 
-    public void setUpdateAt(Date updateAt) {
+    public void setUpdateAt(String updateAt) {
         this.updateAt = updateAt;
     }
 
-    public Date getDeletedAt() {
+    public String getDeletedAt() {
         return deletedAt;
     }
 
-    public void setDeletedAt(Date deletedAt) {
+    public void setDeletedAt(String deletedAt) {
         this.deletedAt = deletedAt;
     }
     

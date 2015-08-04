@@ -43,6 +43,8 @@ public class JInternalFrameNewPatient extends javax.swing.JInternalFrame {
         jTextFieldPatientAddress = new javax.swing.JTextField();
         jButtonSave = new javax.swing.JButton();
         jButtonSave1 = new javax.swing.JButton();
+        jLabelPatientHistorialNumber = new javax.swing.JLabel();
+        jTextFieldPatientHistorialNumber = new javax.swing.JTextField();
 
         setTitle("Nuevo paciente");
 
@@ -66,35 +68,41 @@ public class JInternalFrameNewPatient extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabelPatientHistorialNumber.setText("Nro de historia del paciente:");
+
         javax.swing.GroupLayout jPanelNewPatientLayout = new javax.swing.GroupLayout(jPanelNewPatient);
         jPanelNewPatient.setLayout(jPanelNewPatientLayout);
         jPanelNewPatientLayout.setHorizontalGroup(
             jPanelNewPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelNewPatientLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelNewPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabelNewPatientTitle)
-                    .addGroup(jPanelNewPatientLayout.createSequentialGroup()
-                        .addComponent(jLabelPatientId)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldPatientId))
-                    .addGroup(jPanelNewPatientLayout.createSequentialGroup()
-                        .addComponent(jLabelPatientName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldPatientName))
-                    .addGroup(jPanelNewPatientLayout.createSequentialGroup()
-                        .addComponent(jLabelPatientAddress)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldPatientAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelNewPatientLayout.createSequentialGroup()
-                        .addComponent(jLabelPatientPhoneNumber)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelNewPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanelNewPatientLayout.createSequentialGroup()
-                                .addComponent(jButtonSave1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextFieldPatientPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jPanelNewPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelNewPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabelNewPatientTitle)
+                        .addGroup(jPanelNewPatientLayout.createSequentialGroup()
+                            .addComponent(jLabelPatientId)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextFieldPatientId))
+                        .addGroup(jPanelNewPatientLayout.createSequentialGroup()
+                            .addComponent(jLabelPatientName)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextFieldPatientName))
+                        .addGroup(jPanelNewPatientLayout.createSequentialGroup()
+                            .addComponent(jLabelPatientAddress)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextFieldPatientAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelNewPatientLayout.createSequentialGroup()
+                            .addComponent(jLabelPatientPhoneNumber)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanelNewPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTextFieldPatientPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanelNewPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldPatientHistorialNumber, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanelNewPatientLayout.createSequentialGroup()
+                                        .addComponent(jButtonSave1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addComponent(jLabelPatientHistorialNumber))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelNewPatientLayout.setVerticalGroup(
@@ -118,7 +126,11 @@ public class JInternalFrameNewPatient extends javax.swing.JInternalFrame {
                 .addGroup(jPanelNewPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabelPatientPhoneNumber)
                     .addComponent(jTextFieldPatientPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelNewPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelPatientHistorialNumber)
+                    .addComponent(jTextFieldPatientHistorialNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanelNewPatientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSave1)
                     .addComponent(jButtonSave))
@@ -140,6 +152,8 @@ public class JInternalFrameNewPatient extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSave1ActionPerformed
+        
+        String deleted = " ";
         PatientData patientData = new PatientData();
         PatientDAO patientDAO = new PatientDAO();
         
@@ -147,6 +161,8 @@ public class JInternalFrameNewPatient extends javax.swing.JInternalFrame {
         patientData.setPatientName(jTextFieldPatientName.getText());
         patientData.setPatientAddress(jTextFieldPatientAddress.getText());
         patientData.setPatientPhoneNumber(jTextFieldPatientPhoneNumber.getText());
+        patientData.setHistorialNumber(Integer.parseInt(jTextFieldPatientHistorialNumber.getText()));
+        patientData.setDeletedAt(deleted);
         
         patientDAO.add(patientData);
         JOptionPane.showMessageDialog(this, "Paciente guardado con éxito", "Guardado", WIDTH);
@@ -158,11 +174,13 @@ public class JInternalFrameNewPatient extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonSave1;
     private javax.swing.JLabel jLabelNewPatientTitle;
     private javax.swing.JLabel jLabelPatientAddress;
+    private javax.swing.JLabel jLabelPatientHistorialNumber;
     private javax.swing.JLabel jLabelPatientId;
     private javax.swing.JLabel jLabelPatientName;
     private javax.swing.JLabel jLabelPatientPhoneNumber;
     private javax.swing.JPanel jPanelNewPatient;
     private javax.swing.JTextField jTextFieldPatientAddress;
+    private javax.swing.JTextField jTextFieldPatientHistorialNumber;
     private javax.swing.JTextField jTextFieldPatientId;
     private javax.swing.JTextField jTextFieldPatientName;
     private javax.swing.JTextField jTextFieldPatientPhoneNumber;
