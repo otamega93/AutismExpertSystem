@@ -9,10 +9,10 @@ public class DiagnosisData {
     private int diagnosisThreatment;
     private int threatmentID;
     private String diagnosisResult;
-    private Date deletedAt;
-    private Date updateAt;
+    private String deletedAt;
+    private String updateAt;
 
-    public DiagnosisData(int diagnosisId, int diagnosisThreatment, int threatmentID, String diagnosisResult, Date deletedAt, Date updateAt) {
+    public DiagnosisData(int diagnosisId, int diagnosisThreatment, int threatmentID, String diagnosisResult, String deletedAt, String updateAt) {
         this.diagnosisId = diagnosisId;
         this.diagnosisThreatment = diagnosisThreatment;
         this.threatmentID = threatmentID;
@@ -56,19 +56,19 @@ public class DiagnosisData {
         this.diagnosisResult = diagnosisResult;
     }
 
-    public Date getDeletedAt() {
+    public String getDeletedAt() {
         return deletedAt;
     }
 
-    public void setDeletedAt(Date deletedAt) {
+    public void setDeletedAt(String deletedAt) {
         this.deletedAt = deletedAt;
     }
 
-    public Date getUpdateAt() {
+    public String getUpdateAt() {
         return updateAt;
     }
 
-    public void setUpdateAt(Date updateAT) {
+    public void setUpdateAt(String updateAT) {
         this.updateAt = updateAT;
     }
         

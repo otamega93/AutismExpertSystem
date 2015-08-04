@@ -5,6 +5,7 @@
  */
 package AESViews;
 
+import AESDAO.DiagnosisDAO;
 import AESData.DiagnosisData;
 import javax.swing.JOptionPane;
 
@@ -2123,11 +2124,12 @@ public class JInternalFrameStartDiagnosis extends javax.swing.JInternalFrame {
             if ((j) == JOptionPane.OK_OPTION) {
                 
             DiagnosisData diagnosisData = new DiagnosisData();
-            //DiagnosisDAO diagnosisDAO = new DiagnosisDAO();
+            DiagnosisDAO diagnosisDAO = new DiagnosisDAO();
             
             diagnosisData.setDiagnosisResult(result);
             //diagnosisData.setDiagnosisThreatment(threatment);
             diagnosisData.setThreatmentID(threatment);
+            diagnosisDAO.add(diagnosisData);
            
                 JOptionPane.showMessageDialog(rootPane, "Diagnostico guardado");
                 

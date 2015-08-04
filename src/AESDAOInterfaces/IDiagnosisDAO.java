@@ -1,13 +1,15 @@
 package AESDAOInterfaces;
 
-import AESData.PatientData;
+import AESData.DiagnosisData;
 import javax.swing.table.DefaultTableModel;
-
 
 public interface IDiagnosisDAO {
 
     public DefaultTableModel showDiagnosis (String value);
     
-    public boolean add (PatientData patientData);
+    public boolean add (DiagnosisData diagnosisData);
     
+    public boolean update(DiagnosisData diagnosisData);
+    
+    public boolean delete(DiagnosisData diagnosisData);
 }
