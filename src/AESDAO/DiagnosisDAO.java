@@ -31,7 +31,7 @@ public class DiagnosisDAO implements IDiagnosisDAO {
         try {
             String[] headers = {"ID", "Tratamiento Diagnóstico","Resultado", "Tratamiento ID", "Actualizado el", "Borrado el"};
             String[] registers = new String[6];
-            sSQL = "SELECT * FROM Patient where (diagnosis_id) LIKE '%" + value + "%' OR (diagnosis_result) LIKE '%" + value + "%'";
+            sSQL = "SELECT * FROM Diagnosis where (diagnosis_id) LIKE '%" + value + "%' OR (diagnosis_result) LIKE '%" + value + "%'";
 
             model = new DefaultTableModel(null, headers);
             pst = conn.prepareStatement(sSQL);

@@ -6,6 +6,8 @@
 package AESViews;
 
 import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,6 +20,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
      */
     public JFramePrincipal() {
         initComponents();
+        this.setExtendedState(JFramePrincipal.MAXIMIZED_BOTH);
         //this.setExtendedState(NewJFramePrincipal.MAXIMIZED_BOTH);
     }
 
@@ -39,8 +42,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuItemViewPatients = new javax.swing.JMenuItem();
         jMenuItemViewUsers = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
-        cutMenuItem = new javax.swing.JMenuItem();
+        InitDiagnosisMenuItem = new javax.swing.JMenuItem();
         deleteMenuItem = new javax.swing.JMenuItem();
+        patientDiagnosisMenuItem = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -100,14 +104,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
         editMenu.setMnemonic('e');
         editMenu.setText("Diagnóstico");
 
-        cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Iniciar diagnóstico");
-        cutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        InitDiagnosisMenuItem.setMnemonic('t');
+        InitDiagnosisMenuItem.setText("Iniciar diagnóstico");
+        InitDiagnosisMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cutMenuItemActionPerformed(evt);
+                InitDiagnosisMenuItemActionPerformed(evt);
             }
         });
-        editMenu.add(cutMenuItem);
+        editMenu.add(InitDiagnosisMenuItem);
 
         deleteMenuItem.setMnemonic('d');
         deleteMenuItem.setText("Ver diagnósticos");
@@ -117,6 +121,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         editMenu.add(deleteMenuItem);
+
+        patientDiagnosisMenuItem.setText("Ver pacientes diagnósticados");
+        patientDiagnosisMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patientDiagnosisMenuItemActionPerformed(evt);
+            }
+        });
+        editMenu.add(patientDiagnosisMenuItem);
 
         menuBar.add(editMenu);
 
@@ -149,16 +161,21 @@ public class JFramePrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItemActionPerformed
+    private void InitDiagnosisMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InitDiagnosisMenuItemActionPerformed
         JInternalFrameStartDiagnosis FrameStartDiagnosis = new JInternalFrameStartDiagnosis();
         desktopPane.add(FrameStartDiagnosis);
         FrameStartDiagnosis.show();
+        try {
+            FrameStartDiagnosis.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         FrameStartDiagnosis.setMaximizable(true);
         FrameStartDiagnosis.setIconifiable(true);
         FrameStartDiagnosis.setResizable(false);
         FrameStartDiagnosis.setClosable(true);
         FrameStartDiagnosis.toFront();
-    }//GEN-LAST:event_cutMenuItemActionPerformed
+    }//GEN-LAST:event_InitDiagnosisMenuItemActionPerformed
 
     private void jMenuItemNewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNewPatientActionPerformed
         JInternalFrameNewPatient FrameNewPatient = new JInternalFrameNewPatient();
@@ -194,6 +211,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         JInternalFrameViewPatient FrameViewPatient = new JInternalFrameViewPatient();
         desktopPane.add(FrameViewPatient);
         FrameViewPatient.show();
+        try {
+            FrameViewPatient.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         FrameViewPatient.setMaximizable(true);
         FrameViewPatient.setIconifiable(true);
         FrameViewPatient.setResizable(false);
@@ -205,6 +227,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         JInternalFrameViewDiagnosis FrameViewDiagnosis = new JInternalFrameViewDiagnosis();
         desktopPane.add(FrameViewDiagnosis);
         FrameViewDiagnosis.show();
+        try {
+            FrameViewDiagnosis.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         FrameViewDiagnosis.setMaximizable(true);
         FrameViewDiagnosis.setIconifiable(true);
         FrameViewDiagnosis.setResizable(false);
@@ -213,9 +240,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteMenuItemActionPerformed
 
     private void jMenuItemViewUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemViewUsersActionPerformed
-         JInternalFrameViewUser FrameViewUser = new JInternalFrameViewUser();
+        JInternalFrameViewUser FrameViewUser = new JInternalFrameViewUser();
         desktopPane.add(FrameViewUser);
         FrameViewUser.show();
+        try {
+            FrameViewUser.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         FrameViewUser.setMaximizable(true);
         FrameViewUser.setIconifiable(true);
         FrameViewUser.setResizable(false);
@@ -230,6 +262,22 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         System.exit(0);
     }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void patientDiagnosisMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientDiagnosisMenuItemActionPerformed
+        JInternalFramePatientDiagnosis jInternalFramePatientDiagnosis = new JInternalFramePatientDiagnosis();
+        desktopPane.add(jInternalFramePatientDiagnosis);
+        jInternalFramePatientDiagnosis.show();
+        try {
+            jInternalFramePatientDiagnosis.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        jInternalFramePatientDiagnosis.setMaximizable(true);
+        jInternalFramePatientDiagnosis.setIconifiable(true);
+        jInternalFramePatientDiagnosis.setResizable(false);
+        jInternalFramePatientDiagnosis.setClosable(true);
+        jInternalFramePatientDiagnosis.toFront();
+    }//GEN-LAST:event_patientDiagnosisMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,8 +316,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem InitDiagnosisMenuItem;
     private javax.swing.JMenu MenuRegisters;
-    private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JMenuItem deleteMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu editMenu;
@@ -280,6 +328,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemViewPatients;
     private javax.swing.JMenuItem jMenuItemViewUsers;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem patientDiagnosisMenuItem;
     // End of variables declaration//GEN-END:variables
 
 }

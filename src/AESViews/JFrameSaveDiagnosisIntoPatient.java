@@ -20,10 +20,13 @@ public class JFrameSaveDiagnosisIntoPatient extends javax.swing.JFrame {
      * Creates new form JFrameSaveDiagnosisIntoPatient
      */
     private int id = 0;
+    private String patientName = "";
+    
     JInternalFrameStartDiagnosis jInternalFrameStartDiagnosis = new JInternalFrameStartDiagnosis();
     
     public JFrameSaveDiagnosisIntoPatient() {
         initComponents();
+        this.setTitle("Guardar diagnóstico en el paciente");
         dataLoad("");
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         System.out.println(jInternalFrameStartDiagnosis.test);
@@ -168,15 +171,25 @@ public class JFrameSaveDiagnosisIntoPatient extends javax.swing.JFrame {
         PatientData patientData = new PatientData();
         PatientDAO patientDAO = new PatientDAO();
         
-        patientData.setPatientId(id);
-        patientDAO.addFromDiagnosis(patientData);
-        
+        int j = JOptionPane.showConfirmDialog(rootPane, "¿Está seguro que desea asignar el diagnóstico a " + patientName + "?", "¡Alerta!", JOptionPane.OK_CANCEL_OPTION);
+        if ((j) == JOptionPane.OK_OPTION) {
+
+            patientData.setPatientId(id);
+            patientDAO.addFromDiagnosis(patientData);
+            JOptionPane.showMessageDialog(rootPane, "Diagnóstico asignado al paciente exitosamente");
+            this.dispose();
+
+        }
+
+        if ((j) == JOptionPane.CANCEL_OPTION) {
+            JOptionPane.showMessageDialog(rootPane, "No ha asignado el diagnóstico a ningún paciente");
+        }        
     }//GEN-LAST:event_jButtonAsignActionPerformed
 
     private void jTablePatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePatientMouseClicked
         int row = jTablePatient.rowAtPoint(evt.getPoint());
         id = Integer.parseInt(jTablePatient.getValueAt(row, 0).toString());
-        System.out.println(id);
+        patientName = jTablePatient.getValueAt(row, 2).toString();
     }//GEN-LAST:event_jTablePatientMouseClicked
 
     private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
