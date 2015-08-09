@@ -64,7 +64,7 @@ public class DiagnosisDAO implements IDiagnosisDAO {
         String deleted = "";
         try {
 
-            sSQL = "INSERT INTO Diagnosis(diagnosis_id,diagnosis_threatment,diagnosis_result,threatment_id,deleted_at) values (?,?,?,?,?)";
+            sSQL = "INSERT INTO Diagnosis(diagnosis_id,diagnosis_threatment,diagnosis_result,threatment_id,deleted_at) values (?,?,?,?,?);";
             pst = conn.prepareStatement(sSQL);
 
             pst.setInt(1, diagnosisData.getDiagnosisId());

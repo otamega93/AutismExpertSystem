@@ -22,6 +22,7 @@ public class JInternalFrameStartDiagnosis extends javax.swing.JInternalFrame {
     private double inferenceCounter = 0;
     private int threatment = 0;
     private String result = "";
+    public static int test;
     
     public JInternalFrameStartDiagnosis() {
         javax.swing.JScrollPane scrb;
@@ -2130,6 +2131,10 @@ public class JInternalFrameStartDiagnosis extends javax.swing.JInternalFrame {
             //diagnosisData.setDiagnosisThreatment(threatment);
             diagnosisData.setThreatmentID(threatment);
             diagnosisDAO.add(diagnosisData);
+            
+            JFrameSaveDiagnosisIntoPatient jFrameSaveDiagnosisIntoPatient = new JFrameSaveDiagnosisIntoPatient();
+            jFrameSaveDiagnosisIntoPatient.setVisible(true);
+            jFrameSaveDiagnosisIntoPatient.show();
            
                 JOptionPane.showMessageDialog(rootPane, "Diagnostico guardado");
                 

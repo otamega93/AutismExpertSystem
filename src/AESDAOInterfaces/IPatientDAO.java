@@ -13,5 +13,7 @@ public interface IPatientDAO {
     public boolean update(PatientData patientData);
     
     public boolean delete(PatientData patientData);
+    
+    public boolean addFromDiagnosis(PatientData patientData);
 
 }

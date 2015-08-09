@@ -32,7 +32,7 @@ public class PatientDAO implements IPatientDAO {
             String[] headers = {"ID", "Número Historia","Nombre", "Teléfono", "Dirección", "Número Diagnóstico", "Borrado el", "Actualizado el"};
             String[] registers = new String[8];
             sSQL = "SELECT * FROM Patient where (patient_id) LIKE '%" + value + "%' OR (patient_name) LIKE '%" + value + "%'"
-                    + " OR (patient_historialnumber) ";
+                    + " OR (patient_historialnumber) LIKE '%" + value + "%'";
 
             model = new DefaultTableModel(null, headers);
             pst = conn.prepareStatement(sSQL);
@@ -133,6 +133,44 @@ public class PatientDAO implements IPatientDAO {
                 return true;
         }
          catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex);
+
+            return false;
+        }
+    }
+
+    @Override
+    public boolean addFromDiagnosis(PatientData patientData) {
+        
+        ResultSet rs;
+        int patientId = patientData.getPatientId();
+        int diagnosisId = 0;
+        
+        sSQL = "SELECT * FROM ExpertSystemAutismDB.Diagnosis WHERE diagnosis_id=(SELECT max(diagnosis_id) FROM ExpertSystemAutismDB.Diagnosis); ";
+                
+        try {
+            pst = conn.prepareStatement(sSQL);
+            rs = pst.executeQuery();
+            
+            while (rs.next()) {
+                diagnosisId = rs.getInt("diagnosis_id");
+            }
+            
+            String secondSQL = "UPDATE Patient SET diagnosis_id='" + diagnosisId + "' WHERE patient_id='" + patientId + "' ";
+            
+            try {
+                pst = conn.prepareStatement(secondSQL);
+                pst.execute();
+
+                return true;
+            
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Error: " + ex);
+
+                return false;
+            }               
+                
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error: " + ex);
 
             return false;

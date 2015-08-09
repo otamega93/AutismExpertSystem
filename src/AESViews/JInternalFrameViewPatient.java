@@ -39,6 +39,15 @@ public class JInternalFrameViewPatient extends javax.swing.JInternalFrame {
             JOptionPane.showConfirmDialog(rootPane, e);
         }
     }
+    
+    private void clean() {
+        jTextFieldSearch.setText("");
+        jTextFieldPatientAddress.setText("");
+        jTextFieldPatientHistorialNumber.setText("");
+        jTextFieldPatientId.setText("");
+        jTextFieldPatientName.setText("");
+        jTextFieldPatientPhoneNumber.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,6 +89,11 @@ public class JInternalFrameViewPatient extends javax.swing.JInternalFrame {
         jPanelOptionFrame.setBorder(javax.swing.BorderFactory.createTitledBorder("Marco de opciones"));
 
         jButtonSearch.setText("Buscar");
+        jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchActionPerformed(evt);
+            }
+        });
 
         jButtonEdit.setText("Editar");
         jButtonEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -96,6 +110,11 @@ public class JInternalFrameViewPatient extends javax.swing.JInternalFrame {
         });
 
         jButtonRefresh.setText("Refrescar");
+        jButtonRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRefreshActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelOptionFrameLayout = new javax.swing.GroupLayout(jPanelOptionFrame);
         jPanelOptionFrame.setLayout(jPanelOptionFrameLayout);
@@ -314,6 +333,15 @@ public class JInternalFrameViewPatient extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "No se ha eliminado nada");
         }
     }//GEN-LAST:event_jButtonDeleteActionPerformed
+
+    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
+        dataLoad(jTextFieldSearch.getText());
+    }//GEN-LAST:event_jButtonSearchActionPerformed
+
+    private void jButtonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshActionPerformed
+        clean();
+        dataLoad("");
+    }//GEN-LAST:event_jButtonRefreshActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
