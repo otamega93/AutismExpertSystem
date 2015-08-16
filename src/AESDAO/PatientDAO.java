@@ -100,7 +100,7 @@ public class PatientDAO implements IPatientDAO {
             String patientPhoneNumber = patientData.getPatientPhoneNumber();
                         
             String sSQL = "UPDATE Patient SET patient_name='" + patientName + "', patient_address='" + patientAddress + "',"
-                + " patient_phonenumber='" + patientPhoneNumber + "', patient_historialnumber='" + patientHistorialNumber + "',"
+                + " patient_phonenumber='" + patientPhoneNumber + "', patient_historialnumber='" + patientHistorialNumber + "' "
                 + "WHERE patient_id='" + patientId + "' ";
             PreparedStatement pst = conn.prepareStatement(sSQL);
             pst.execute();

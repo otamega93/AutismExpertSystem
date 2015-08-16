@@ -1269,7 +1269,7 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="jRadioButtonQ5_1_5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Resultado 1.5"/>
+                <Property name="text" type="java.lang.String" value="Cierto inter&#xe9;s"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonQ5_1_5ActionPerformed"/>
@@ -1650,6 +1650,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Salir"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonExitActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -21,6 +21,14 @@ public class JInternalFrameNewPatient extends javax.swing.JInternalFrame {
     public JInternalFrameNewPatient() {
         initComponents();
     }
+    
+    public void clean() {
+        jTextFieldPatientId.setText("");
+        jTextFieldPatientName.setText("");
+        jTextFieldPatientHistorialNumber.setText("");
+        jTextFieldPatientPhoneNumber.setText("");
+        jTextFieldPatientAddress.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,6 +68,11 @@ public class JInternalFrameNewPatient extends javax.swing.JInternalFrame {
         jLabelPatientPhoneNumber.setText("Teléfono del paciente:");
 
         jButtonSave.setText("Salir");
+        jButtonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveActionPerformed(evt);
+            }
+        });
 
         jButtonSave1.setText("Guardar");
         jButtonSave1.addActionListener(new java.awt.event.ActionListener() {
@@ -166,7 +179,13 @@ public class JInternalFrameNewPatient extends javax.swing.JInternalFrame {
         
         patientDAO.add(patientData);
         JOptionPane.showMessageDialog(this, "Paciente guardado con éxito", "Guardado", WIDTH);
+        clean();
     }//GEN-LAST:event_jButtonSave1ActionPerformed
+
+    private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
+        clean();
+        this.dispose();
+    }//GEN-LAST:event_jButtonSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

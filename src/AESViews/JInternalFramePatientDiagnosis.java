@@ -221,8 +221,12 @@ public class JInternalFramePatientDiagnosis extends javax.swing.JInternalFrame {
 
     private void jTablePatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePatientMouseClicked
         int row = jTablePatient.rowAtPoint(evt.getPoint());
-        diagnosis_id = jTablePatient.getValueAt(row, 5).toString();
-        dataLoadDiagnosis(diagnosis_id);
+            if (jTablePatient.getValueAt(row, 5) != null) {
+                diagnosis_id = jTablePatient.getValueAt(row, 5).toString();
+                dataLoadDiagnosis(diagnosis_id);
+            } else {
+                dataLoadDiagnosis("xxxxxxxx");
+            }
     }//GEN-LAST:event_jTablePatientMouseClicked
 
     private void jTableDiagnosisComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jTableDiagnosisComponentAdded

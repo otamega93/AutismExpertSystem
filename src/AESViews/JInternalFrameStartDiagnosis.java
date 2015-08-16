@@ -436,7 +436,7 @@ public class JInternalFrameStartDiagnosis extends javax.swing.JInternalFrame {
         if (inferenceCounter >= 36) {
             result = "Autismo severo";
             threatment = 1;
-        } else if (inferenceCounter >= 30 && inferenceCounter < 30) {
+        } else if (inferenceCounter >= 30 && inferenceCounter < 36) {
             result = "Autismo moderado";
             threatment = 2;
         } else {
@@ -1054,7 +1054,7 @@ public class JInternalFrameStartDiagnosis extends javax.swing.JInternalFrame {
             }
         });
 
-        jRadioButtonQ5_1_5.setText("Resultado 1.5");
+        jRadioButtonQ5_1_5.setText("Cierto interés");
         jRadioButtonQ5_1_5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonQ5_1_5ActionPerformed(evt);
@@ -1370,6 +1370,11 @@ public class JInternalFrameStartDiagnosis extends javax.swing.JInternalFrame {
         });
 
         jButtonExit.setText("Salir");
+        jButtonExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelDiagnosisLayout = new javax.swing.GroupLayout(jPanelDiagnosis);
         jPanelDiagnosis.setLayout(jPanelDiagnosisLayout);
@@ -2355,6 +2360,11 @@ public class JInternalFrameStartDiagnosis extends javax.swing.JInternalFrame {
     private void jRadioButtonQ15_3_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonQ15_3_5ActionPerformed
         
     }//GEN-LAST:event_jRadioButtonQ15_3_5ActionPerformed
+
+    private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonExitActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupEighthQuestion;
     private javax.swing.ButtonGroup buttonGroupEleventhQuestion;
