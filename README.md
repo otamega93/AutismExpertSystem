@@ -1,5 +1,5 @@
 # AutismExpertSystem
-My final career project. The one who awarded me with an honorific mention.
+My final career project.
 
 This is a prototype of an expert system that diagnose autism in people between two and eighteen years old. 
 It has its inference engine working like charm and handles data with a MySQL DB.
